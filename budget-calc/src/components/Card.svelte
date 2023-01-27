@@ -15,7 +15,7 @@
   let show: boolean = false
 </script>
 
-<article class="rounded-lg border border-black/20 bg-white py-4 px-5 shadow-md">
+<article class="rounded-lg border border-black/20 bg-white py-3 px-4 shadow-md">
   <div class=" flex items-center justify-between ">
     <!-- svelte-ignore a11y-label-has-associated-control -->
     <label class="cursor-pointer text-slate-800 hover:text-sky-500">
