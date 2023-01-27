@@ -18,13 +18,15 @@
   <Title title="Expense List:" />
   <ul class="mt-4 space-y-5">
     {#each data as item (item.id)}
-      <li transition:fade>
+      <li in:fly={{ x: 50, duration: 1000, easing: elasticOut }} out:fade>
         <Card {...item} />
       </li>
     {:else}
       <li in:fly={{ x: 50, delay: 500, easing: elasticOut }}>
-        <h2 class="text-rose-700  capitalize text-lg">
-          list of expenses is currently empty...
+        <h2
+          class="bg-rose-500 tracking-wider py-2 rounded-md text-white  capitalize text-lg text-center"
+        >
+          list of expenses is currently empty
         </h2>
       </li>
     {/each}
