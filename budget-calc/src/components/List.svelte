@@ -17,8 +17,11 @@
 <section class="mt-5">
   <Title title="Expense List:" />
   <ul class="mt-4 space-y-5">
-    {#each data as item (item.id)}
-      <li in:fly={{ x: 50, duration: 1000, easing: elasticOut }} out:fade>
+    {#each data as item, i (item.id)}
+      <li
+        in:fly={{ x: 50, delay: i * 350, duration: 1000, easing: elasticOut }}
+        out:fade
+      >
         <Card {...item} />
       </li>
     {:else}
@@ -34,7 +37,10 @@
   {#if data.length > 0}
     <Button
       class="mt-6 w-full rounded-md bg-sky-500 p-2  capitalize tracking-wider text-white hover:bg-sky-600"
-      on:click={clearExpenses}>clear expenses</Button
+      on:click={() => {
+        if (confirm('Are you sure you wanted to clear all expenses?'))
+          clearExpenses()
+      }}>clear expenses</Button
     >
   {/if}
 </section>
