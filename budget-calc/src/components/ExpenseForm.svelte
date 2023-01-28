@@ -9,11 +9,12 @@
   import numbersOnly from '../utils/numbersOnly'
 
   export let show: boolean
+  export let name: string
+  export let amount: number
+  export let isEditing: boolean
 
-  export let name: string = ''
-  export let amount: number = null
   let nameInput: HTMLInputElement
-
+  const title = isEditing ? 'edit expense' : 'add expense'
   const dispatch = createEventDispatcher()
 
   $: isEmpty = !name || !amount
@@ -22,15 +23,19 @@
     nameInput.focus()
   })
 
-  function reset(): void {
-    name = ''
-    amount = null
-  }
-
-  export function closeForm(): void {
+  function closeForm(): void {
     show = false
     document.body.classList.remove('overflow-y-hidden')
-    reset()
+    name = ''
+    amount = null
+    isEditing = false
+  }
+
+  function onSubmit(): void {
+    if (isEmpty) return
+
+    isEditing ? dispatch('edit') : dispatch('add')
+    closeForm()
   }
 </script>
 
@@ -42,7 +47,7 @@
       on:outclick={closeForm}
     >
       <div class="flex items-center justify-between">
-        <Title title="add expense" class="text-sky-400" />
+        <Title {title} class="text-sky-400" />
         <Button
           class="rounded-md bg-rose-500 py-1 px-3 text-base font-semibold text-white hover:bg-rose-800"
           on:click={closeForm}
@@ -52,8 +57,7 @@
       </div>
       <form
         class="mt-6 rounded-lg bg-white px-5 py-8 text-slate-800 shadow-md"
-        on:submit|preventDefault={() =>
-          dispatch('submit', { name, amount: Number(amount) })}
+        on:submit|preventDefault={onSubmit}
       >
         <label class="block">
           <p class="text-sm">Name</p>
@@ -86,9 +90,10 @@
         <Button
           type="submit"
           disabled={isEmpty}
-          class="mt-4 w-full rounded-md bg-sky-500 p-2 capitalize text-white hover:bg-sky-600 disabled:cursor-not-allowed disabled:bg-slate-400"
-          >add expense</Button
+          class="mt-4 w-full rounded-md bg-sky-500 p-2 capitalize tracking-wider text-white hover:bg-sky-600 disabled:cursor-not-allowed disabled:bg-slate-400"
         >
+          {title}
+        </Button>
       </form>
     </div>
   </section>
