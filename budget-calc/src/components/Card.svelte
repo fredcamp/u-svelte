@@ -12,6 +12,8 @@
 
   const removeExpense: (id: string) => void = getContext('remove')
 
+  const onClickEdit: (id: string) => void = getContext('clickedit')
+
   let show: boolean = false
 </script>
 
@@ -33,13 +35,18 @@
     </label>
 
     <div class="space-x-2">
-      <Button class="p-2 text-green-500 hover:text-green-700">
+      <Button
+        class="p-2 text-green-500 hover:text-green-700"
+        on:click={() => onClickEdit(id)}
+      >
         <span class="sr-only">edit</span>
         <i class="fas fa-pen" />
       </Button>
       <Button
         class="p-2 text-red-500 hover:text-red-700"
-        on:click={() => removeExpense(id)}
+        on:click={() => {
+          if (confirm('Are you sure you want to delete?')) removeExpense(id)
+        }}
       >
         <span class="sr-only">delete</span>
         <i class="fas fa-trash" />
