@@ -7,6 +7,7 @@
   import List from './components/List.svelte'
   import Title from './components/Title.svelte'
   import ExpenseForm from './components/ExpenseForm.svelte'
+  import Footer from './components/Footer.svelte'
 
   import { amountParser } from './utils/parser'
   import { getLocalStorage, setLocalStorage } from './localStorage'
@@ -25,7 +26,9 @@
   setContext('clear', clearExpenses)
   setContext('clickedit', onClickEdit)
 
-  onMount(() => (data = getLocalStorage()))
+  onMount(() => {
+    data = getLocalStorage()
+  })
   afterUpdate(() => setLocalStorage(data))
 
   // change show value when card update button is clicked
@@ -87,3 +90,4 @@
     />
   {/if}
 </Main>
+<Footer />
