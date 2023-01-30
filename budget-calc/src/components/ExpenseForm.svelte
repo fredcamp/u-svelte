@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { slide } from 'svelte/transition'
+  import { slide, fly } from 'svelte/transition'
   import { onMount, createEventDispatcher } from 'svelte'
 
+  import Modal from './Modal.svelte'
   import Title from './Title.svelte'
   import Button from './Button.svelte'
 
@@ -40,31 +41,29 @@
 </script>
 
 {#if show}
-  <section class="fixed inset-0 grid place-items-center bg-black/90">
+  <Modal>
     <div
-      class="relative mx-auto w-full max-w-md px-6"
+      class="relative mx-auto w-full max-w-md rounded-lg bg-white px-6 py-8 shadow-md"
       use:clickOutside
       on:outclick={closeForm}
+      in:fly={{ y: 80, duration: 500 }}
     >
       <div class="flex items-center justify-between">
-        <Title {title} class="text-sky-400" />
+        <Title {title} class="text-sky-700" />
         <Button
-          class="rounded-md bg-rose-500 py-1 px-3 text-base font-semibold text-white hover:bg-rose-800"
+          class="rounded-md py-1 px-3 text-base font-semibold text-rose-500 hover:text-rose-800"
           on:click={closeForm}
         >
           <i class="fa-sharp fa-solid fa-xmark" /> Close
         </Button>
       </div>
-      <form
-        class="mt-6 rounded-lg bg-white px-5 py-8 text-slate-800 shadow-md"
-        on:submit|preventDefault={onSubmit}
-      >
+      <form class="mt-6 text-slate-800" on:submit|preventDefault={onSubmit}>
         <label class="block">
           <p class="text-sm">Name</p>
           <input
             bind:this={nameInput}
             type="text"
-            class="mt-1 w-full border-b-2 text-slate-600 focus:border-sky-500 focus:outline-none"
+            class="mt-1 w-full border-b-2 bg-transparent text-slate-600 focus:border-sky-500 focus:outline-none"
             bind:value={name}
             required
           />
@@ -96,5 +95,5 @@
         </Button>
       </form>
     </div>
-  </section>
+  </Modal>
 {/if}
