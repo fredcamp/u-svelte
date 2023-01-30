@@ -5,3 +5,4 @@ Compilation of output and guide notes when studying the course. Do note that cod
 ## Topics
 
 - [Budget Calculator](/budget-calc)
+- [Razors E-Commerce](/razors-ecommerce)
