@@ -2,6 +2,7 @@
   import { getContext } from 'svelte'
   import { fade, fly } from 'svelte/transition'
   import { elasticOut } from 'svelte/easing'
+  import { flip } from 'svelte/animate'
 
   import type Expense from '../types/Expense'
 
@@ -19,8 +20,14 @@
   <ul class="mt-4 space-y-5">
     {#each data as item, i (item.id)}
       <li
-        in:fly={{ x: 50, delay: i * 350, duration: 1000, easing: elasticOut }}
+        in:fly={{
+          x: 50,
+          delay: (i + 1) * 350,
+          duration: 1000,
+          easing: elasticOut,
+        }}
         out:fade
+        animate:flip
       >
         <Card {...item} />
       </li>
