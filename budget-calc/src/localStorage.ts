@@ -1,7 +1,9 @@
 import type Expense from './types/Expense'
+import expenses from './expenses'
 
 function getLocalStorage(): Expense[] {
-  return JSON.parse(localStorage.getItem('expenses')) ?? []
+  const data = JSON.parse(localStorage.getItem('expenses'))
+  return data?.length > 0 ? data : expenses
 }
 
 function setLocalStorage(expenses: Expense[]): void {
