@@ -1,9 +1,23 @@
 <script lang="ts">
-  let text = 'razors e-commerce project'
+  import { Router, Route, Link } from 'svelte-routing'
+  import {
+    About,
+    Checkout,
+    Home,
+    Login,
+    Products,
+    ProductsTemplate,
+  } from './pages'
+  import Nav from './components/Navbar/Nav.svelte'
 </script>
 
-<svelte:head>
-  <title>Razors E-Commerce</title>
-</svelte:head>
-
-<h1>{text}</h1>
+<Router>
+  <Nav />
+  <main>
+    <Route path="/" component={Home} />
+    <Route path="/about" component={About} />
+    <Route path="/login" component={Login} />
+    <Route path="/products" component={Products} />
+    <Route path="/products/:id" component={ProductsTemplate} />
+  </main>
+</Router>
