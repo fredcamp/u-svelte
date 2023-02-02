@@ -6,10 +6,10 @@
 >
   <div class="text-primary-light h-full bg-slate-800/50">
     <div
-      class="flex h-full flex-col items-start justify-center space-y-4 px-6 md:mx-auto md:max-w-screen-md"
+      class="flex h-full flex-col items-start justify-center space-y-4 px-6 lg:mx-auto  lg:max-w-screen-lg"
     >
       <h2
-        class="font-serif text-5xl font-semibold drop-shadow-2xl sm:text-6xl md:text-7xl"
+        class="font-serif text-4xl font-semibold drop-shadow-2xl sm:text-5xl md:text-6xl lg:text-7xl"
       >
         Foam, Shave, & Grow
       </h2>
