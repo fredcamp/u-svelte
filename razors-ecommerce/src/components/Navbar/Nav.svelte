@@ -17,7 +17,7 @@
   class="bg-primary-light fixed top-0 left-0 right-0 z-50 text-slate-900 shadow-sm"
 >
   <div
-    class="relative flex items-center justify-between py-5 px-6 md:mx-auto md:max-w-screen-md"
+    class="relative flex items-center justify-between py-5 px-6 lg:mx-auto lg:max-w-screen-lg"
   >
     <NavLinks class="hidden md:flex md:gap-4" />
     <Button
