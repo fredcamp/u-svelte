@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Link } from 'svelte-routing'
   import { show } from '../../stores/nav'
+  import backToTop from '../../utils/backToTop'
 
   let className: string = ''
 
@@ -25,6 +26,7 @@
 
   function onClick(): void {
     $show = false
+    backToTop()
   }
 </script>
 

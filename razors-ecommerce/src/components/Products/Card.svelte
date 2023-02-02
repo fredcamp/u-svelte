@@ -1,6 +1,8 @@
 <script lang="ts">
   import { link } from 'svelte-routing'
   import { fly } from 'svelte/transition'
+  import { amountParser } from '../../utils/parser'
+  import backToTop from '../../utils/backToTop'
 
   export let id: number
   export let title: string
@@ -17,13 +19,18 @@
 </script>
 
 <article
-  class="bg-primary-light/40 border-primary/40 relative h-full cursor-pointer overflow-hidden rounded-md border-2 shadow-md"
+  class="bg-primary-light/40 border-primary/40 relative grid h-full cursor-pointer overflow-hidden rounded-md border-2 shadow-md"
   on:mouseenter={toggleShow}
   on:mouseleave={toggleShow}
 >
-  <div class="py-4 px-6">
-    <img src="/src{image}" alt={title} class="shrink-0" />
-    <h3 class="mt-4 text-center capitalize">{title}</h3>
+  <div class="self-center py-4 px-6">
+    <img src="/src{image}" alt={title} class="mx-auto max-h-40 max-w-full" />
+    <footer class="flex flex-col items-center justify-center gap-1">
+      <h3 class="mt-4 text-center capitalize">{title}</h3>
+      <p class="text-primary-dark text-center text-sm tracking-widest">
+        {amountParser(price)}
+      </p>
+    </footer>
 
     {#if show}
       <div
@@ -32,7 +39,8 @@
         out:fly={{ y: -200, duration: 500 }}
       >
         <a
-          href="products/{id}"
+          href="/products/{id}"
+          on:click={backToTop}
           use:link
           class="bg-primary-dark hover:bg-primary rounded-full px-6 py-2 text-white"
           >Details</a
