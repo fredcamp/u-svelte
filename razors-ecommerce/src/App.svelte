@@ -9,6 +9,7 @@
     ProductsTemplate,
   } from './pages'
   import Nav from './components/Navbar/Nav.svelte'
+  import Footer from './components/Footer.svelte'
 </script>
 
 <Router>
@@ -19,3 +20,4 @@
   <Route path="/products" component={Products} />
   <Route path="/products/:id" component={ProductsTemplate} />
 </Router>
+<Footer />
