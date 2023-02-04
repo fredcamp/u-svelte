@@ -4,7 +4,9 @@
 <header
   class="bg-hero-background z-40 h-screen bg-cover bg-center bg-no-repeat"
 >
-  <div class="text-primary-light h-full bg-slate-800/50">
+  <div
+    class="text-primary-light h-full bg-gradient-to-br from-slate-900/70 to-slate-600/60"
+  >
     <div
       class="flex h-full flex-col items-start justify-center space-y-4 px-6 lg:mx-auto  lg:max-w-screen-lg"
     >
