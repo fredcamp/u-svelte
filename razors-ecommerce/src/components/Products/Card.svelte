@@ -7,8 +7,6 @@
   export let id: number
   export let title: string
   export let price: number
-  export let description: string
-  export let featured: boolean
   export let image: string
 
   let show = false
@@ -27,7 +25,9 @@
     <img src="/src{image}" alt={title} class="mx-auto max-h-40 max-w-full" />
     <footer class="flex flex-col items-center justify-center gap-1">
       <h3 class="mt-4 text-center capitalize">{title}</h3>
-      <p class="text-primary-dark text-center text-sm tracking-widest">
+      <p
+        class="text-primary-dark text-center font-serif text-sm tracking-widest"
+      >
         {amountParser(price)}
       </p>
     </footer>
@@ -42,7 +42,7 @@
           href="/products/{id}"
           on:click={backToTop}
           use:link
-          class="bg-primary-dark hover:bg-primary rounded-full px-6 py-2 text-white"
+          class="bg-primary-dark hover:bg-primary focus:ring-primary rounded-full px-6 py-2  tracking-wider text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black/40"
           >Details</a
         >
       </div>
