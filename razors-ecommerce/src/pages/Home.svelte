@@ -1,11 +1,9 @@
 <script lang="ts">
   import { link } from 'svelte-routing'
   import Hero from '../components/Hero.svelte'
-  import Card from '../components/Products/Card.svelte'
-  import products from '../stores/products'
+  import Main from '../components/Main.svelte'
+  import Featured from '../components/Products/Featured.svelte'
   import backToTop from '../utils/backToTop'
-
-  const featuredProducts = $products.filter((item) => item.featured)
 </script>
 
 <svelte:head>
@@ -24,18 +22,6 @@
   </a>
 </Hero>
 
-<main class="px-6 lg:mx-auto lg:max-w-screen-lg">
-  <section class="mt-14">
-    <h2 class="text-center text-2xl font-semibold">Featured Products</h2>
-
-    <ul
-      class="xs:mx-auto xs:w-[80%] mt-8 grid gap-8 sm:w-[90%] sm:grid-cols-2 md:w-full md:grid-cols-4 md:gap-4"
-    >
-      {#each featuredProducts as product}
-        <li>
-          <Card {...product} />
-        </li>
-      {/each}
-    </ul>
-  </section>
-</main>
+<Main class="px-6 lg:mx-auto lg:max-w-screen-lg">
+  <Featured />
+</Main>
