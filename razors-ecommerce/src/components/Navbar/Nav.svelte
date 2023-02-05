@@ -10,13 +10,11 @@
   let toggleLinks = false
   let innerWidth: number
 
-  function onResize() {
-    if (innerWidth > 768) {
-      $show = false
-      toggleLinks = true
-    } else {
-      toggleLinks = false
-    }
+  $: if (innerWidth > 768) {
+    $show = false
+    toggleLinks = true
+  } else {
+    toggleLinks = false
   }
 
   function onClick(): void {
@@ -25,7 +23,7 @@
   }
 </script>
 
-<svelte:window bind:innerWidth on:resize={onResize} />
+<svelte:window bind:innerWidth />
 
 <nav
   class="bg-primary-light fixed top-0 left-0 right-0 z-50 text-slate-900 shadow-sm"
