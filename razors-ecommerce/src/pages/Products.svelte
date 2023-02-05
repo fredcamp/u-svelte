@@ -7,6 +7,6 @@
   <title>Razors | Products</title>
 </svelte:head>
 
-<Main class="mt-32 px-6 lg:mx-auto lg:max-w-screen-lg">
+<Main class="mt-32 min-h-screen px-6 lg:mx-auto lg:max-w-screen-lg">
   <List title="Our Products" />
 </Main>
