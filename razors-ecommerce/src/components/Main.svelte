@@ -4,6 +4,6 @@
   export { className as class }
 </script>
 
-<main class="min-h-screen {className}">
+<main class={className}>
   <slot />
 </main>
