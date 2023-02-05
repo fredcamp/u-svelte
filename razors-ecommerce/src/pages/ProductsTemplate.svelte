@@ -8,6 +8,7 @@
   import Button from '../components/Button.svelte'
   import Loading from '../components/Loading.svelte'
   import products from '../stores/products'
+  import { cartItems, show } from '../stores/cart'
   import { amountParser } from '../utils/parser'
   import capitalize from '../utils/capitalize'
 
@@ -25,13 +26,32 @@
 
     return () => clearTimeout(timeoutId)
   })
+
+  function onClick(): void {
+    const productExistInCart = $cartItems.find(
+      (item) => item.id === $product.id
+    )
+
+    if (productExistInCart) {
+      $cartItems = $cartItems.map((item) => {
+        return item.id === Number(id)
+          ? { ...item, amount: item.amount + 1 }
+          : item
+      })
+    } else {
+      const { id, image, price, title } = $product
+      $cartItems = [...$cartItems, { id, image, price, title, amount: 1 }]
+    }
+
+    $show = true
+  }
 </script>
 
 <svelte:head>
   <title>Razors | {$product ? capitalize($product.title) : 'Product'}</title>
 </svelte:head>
 
-<Main class="mt-28 px-6 lg:mx-auto lg:max-w-screen-lg">
+<Main class="mt-28 min-h-screen px-6 lg:mx-auto lg:max-w-screen-lg">
   <a
     href="/products"
     class="bg-primary-light focus:ring-primary-light group inline-block rounded-full px-5 py-3 text-sm text-black shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2"
@@ -59,6 +79,7 @@
           <p>{$product.description}</p>
           <Button
             class="bg-primary-dark hover:bg-primary focus:ring-primary !mt-10 w-full rounded-full p-3 text-sm tracking-wider text-white shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2"
+            on:click={onClick}
             >Add to Cart <i class="fas fa-shopping-basket ml-1" /></Button
           >
         </div>
