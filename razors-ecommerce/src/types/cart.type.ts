@@ -13,4 +13,9 @@ interface CartShow {
   set: Writable<boolean>['set']
 }
 
-export type { Cart, CartShow }
+interface CartStore {
+  subscribe: Writable<Cart[]>['subscribe']
+  set: Writable<Cart[]>['set']
+}
+
+export type { Cart, CartShow, CartStore }
