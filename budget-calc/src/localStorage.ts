@@ -3,7 +3,7 @@ import expenses from './expenses'
 
 function getLocalStorage(): Expense[] {
   const data = JSON.parse(localStorage.getItem('expenses'))
-  return data?.length > 0 ? data : expenses
+  return data?.length > 0 ? data : []
 }
 
 function setLocalStorage(expenses: Expense[]): void {
