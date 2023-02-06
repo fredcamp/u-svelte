@@ -1,6 +1,7 @@
 import { writable, derived } from 'svelte/store'
-import type { Cart, CartShow } from '../types/cart.type'
-import localCart from '../data/localCart'
+import type { Cart, CartShow, CartStore } from '../types/cart.type'
+// import localCart from '../data/localCart'
+import { getStorageCart, setStorageCart } from './localStorage'
 
 let show = createShowStore(false)
 
@@ -20,7 +21,19 @@ function createShowStore(initial: boolean): CartShow {
   }
 }
 
-let cartItems = writable<Cart[]>(localCart)
+let cartItems = createCartStore(getStorageCart())
+
+function createCartStore(initial: Cart[]): CartStore {
+  const { subscribe, set } = writable(initial)
+
+  return {
+    subscribe,
+    set: (value: Cart[]) => {
+      setStorageCart(value)
+      set(value)
+    },
+  }
+}
 
 const totalQuantity = derived(cartItems, ($cartItems) =>
   $cartItems.reduce((acc, curr) => acc + curr.amount, 0)
