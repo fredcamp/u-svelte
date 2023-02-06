@@ -26,7 +26,6 @@
           duration: 1000,
           easing: elasticOut,
         }}
-        out:fade
         animate:flip
       >
         <Card {...item} />
