@@ -1,7 +1,7 @@
 <script lang="ts">
-  import tailwind from '../assets/images/tailwind.svg'
-  import svelte from '../assets/images/svelte.svg'
-  import typescript from '../assets/images/typescript.svg'
+  import tailwind from '../assets/tailwind.svg'
+  import svelte from '../assets/svelte.svg'
+  import typescript from '../assets/typescript.svg'
 </script>
 
 <footer class="bg-primary-light mt-32 text-sm text-slate-900">

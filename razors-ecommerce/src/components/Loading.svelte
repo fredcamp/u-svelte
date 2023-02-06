@@ -1,5 +1,5 @@
 <script lang="ts">
-  import loading from '../assets/images/loading.svg'
+  import loading from '../assets/loading.svg'
 
   export let height: number = 320
 </script>

@@ -22,7 +22,7 @@
   on:mouseleave={toggleShow}
 >
   <div class="self-center py-4 px-6">
-    <img src="/src{image}" alt={title} class="mx-auto max-h-40 max-w-full" />
+    <img src={image} alt={title} class="mx-auto max-h-40 max-w-full" />
     <footer class="flex flex-col items-center justify-center gap-1">
       <h3 class="mt-4 text-center capitalize">{title}</h3>
       <p

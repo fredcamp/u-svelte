@@ -37,7 +37,7 @@
 
 <article class="bg-primary-dark/10 rounded-md">
   <div class="grid grid-cols-[auto_1fr_auto] items-center gap-2 px-2 py-1">
-    <img src="/src{image}" alt={title} class="max-h-20 max-w-full" />
+    <img src={image} alt={title} class="max-h-20 max-w-full" />
     <div class="flex flex-col items-start truncate">
       <h3 class="capitalize tracking-wider">
         {title}
