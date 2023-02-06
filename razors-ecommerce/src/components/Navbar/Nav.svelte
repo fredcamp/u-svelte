@@ -5,6 +5,7 @@
   import Button from '../Button.svelte'
   import CartButton from '../Cart/CartButton.svelte'
   import { show, getProps } from '../../stores/nav'
+  import user from '../../stores/user'
   import backToTop from '../../utils/backToTop'
 
   let toggleLinks = false
@@ -49,11 +50,25 @@
     >
       <h1>Razors</h1>
     </a>
-    <div class="space-x-2">
+    <div class="flex items-center gap-2">
       {#if toggleLinks}
-        <Link to="/login" {getProps} on:click={onClick}>login</Link>
+        {#if $user.jwt}
+          <div class="group px-2">
+            <p class="group-hover:hidden">
+              {$user.username}
+            </p>
+            <a
+              href="/logout"
+              use:link
+              class=" group-hover:text-primary-dark hidden group-hover:block"
+              >Logout</a
+            >
+          </div>
+        {:else}
+          <Link to="/login" {getProps} on:click={onClick}>login</Link>
+        {/if}
       {/if}
-      <CartButton on:click={() => console.log('cart button')} />
+      <CartButton />
     </div>
   </div>
 
@@ -73,7 +88,11 @@
       <h1 class="text-3xl font-semibold tracking-wider">Razors</h1>
       <NavLinks {onClick} class="space-y-6">
         <li>
-          <Link to="/login" {getProps} on:click={onClick}>login</Link>
+          {#if $user.jwt}
+            <Link to="/logout" {getProps} on:click={onClick}>logout</Link>
+          {:else}
+            <Link to="/login" {getProps} on:click={onClick}>login</Link>
+          {/if}
         </li>
       </NavLinks>
     </div>

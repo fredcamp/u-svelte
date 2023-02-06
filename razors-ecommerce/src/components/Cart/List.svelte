@@ -6,10 +6,9 @@
   import Button from '../Button.svelte'
   import Card from './Card.svelte'
   import { show, cartItems, totalPrice } from '../../stores/cart'
+  import user from '../../stores/user'
   import { amountParser } from '../../utils/parser'
   import clickoutside from '../../utils/clickoutside'
-
-  let user = false
 
   function onClick(): void {
     $show = false
@@ -53,7 +52,7 @@
         <p class="text-center text-lg font-semibold tracking-widest">
           Total : {amountParser($totalPrice)}
         </p>
-        {#if user}
+        {#if $user.jwt}
           <a
             href="/checkout"
             on:click={onClick}
