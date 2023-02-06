@@ -65,7 +65,7 @@
     <section class="mt-16" in:fade>
       <div class="grid gap-4 md:grid-cols-2">
         <img
-          src="/src{$product.image}"
+          src={$product.image}
           alt={$product.title}
           class="mx-auto max-h-72 max-w-full self-center"
         />
