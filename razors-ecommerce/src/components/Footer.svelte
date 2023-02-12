@@ -4,9 +4,9 @@
   import typescript from '../assets/typescript.svg'
 </script>
 
-<footer class="bg-primary-light mt-32 text-sm text-slate-900">
+<footer class="bg-primary-light mt-28 text-sm text-slate-900">
   <div
-    class="mx-auto flex items-center justify-between py-4 px-5 lg:max-w-screen-lg"
+    class="mx-auto flex flex-wrap items-center justify-between py-4 px-5 lg:max-w-screen-lg"
   >
     <div class="flex space-x-2">
       <p>&copy; 2023 &mdash;</p>
