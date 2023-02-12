@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { derived } from 'svelte/store'
   import Card from './Card.svelte'
   import Loading from '../Loading.svelte'
   import { featuredProducts } from '../../stores/products'
