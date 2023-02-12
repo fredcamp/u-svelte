@@ -51,17 +51,17 @@
   <title>Razors | {$product ? capitalize($product.title) : 'Product'}</title>
 </svelte:head>
 
-<Main class="mt-28 min-h-screen px-6 lg:mx-auto lg:max-w-screen-lg">
-  <a
-    href="/products"
-    class="bg-primary-light focus:ring-primary-light group inline-block rounded-full px-5 py-3 text-sm text-black shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2"
-    use:link
-    ><i
-      class="fas fa-arrow-left text-primary-dark mr-2 tracking-wider transition-transform group-hover:-translate-x-1 "
-    /> Back to Products</a
-  >
-
+<Main class="mt-28 px-6 lg:mx-auto lg:max-w-screen-lg">
   {#if $product}
+    <a
+      href="/products"
+      class="bg-primary-light focus:ring-primary-light group inline-block rounded-full px-5 py-3 text-sm text-black shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2"
+      use:link
+      ><i
+        class="fas fa-arrow-left text-primary-dark mr-2 tracking-wider transition-transform group-hover:-translate-x-1 "
+      /> Back to Products</a
+    >
+
     <section class="mt-16" in:fade>
       <div class="grid gap-4 md:grid-cols-2">
         <img
