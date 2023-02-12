@@ -7,6 +7,7 @@
   import { show, getProps } from '../../stores/nav'
   import user from '../../stores/user'
   import backToTop from '../../utils/backToTop'
+  import { logoutUser } from '../../stores/user'
 
   let toggleLinks = false
   let innerWidth: number
@@ -58,7 +59,8 @@
               {$user.username}
             </p>
             <a
-              href="/logout"
+              href="/login"
+              on:click={logoutUser}
               use:link
               class=" group-hover:text-primary-dark hidden group-hover:block"
               >Logout</a
@@ -89,7 +91,14 @@
       <NavLinks {onClick} class="space-y-6">
         <li>
           {#if $user.jwt}
-            <Link to="/logout" {getProps} on:click={onClick}>logout</Link>
+            <Link
+              to="/login"
+              {getProps}
+              on:click={() => {
+                logoutUser()
+                onClick()
+              }}>logout</Link
+            >
           {:else}
             <Link to="/login" {getProps} on:click={onClick}>login</Link>
           {/if}
