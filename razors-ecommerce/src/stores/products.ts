@@ -1,15 +1,15 @@
 import { writable, derived } from 'svelte/store'
-import localProducts from '../data/localProducts'
 import type { Product } from '../types/product.type'
+import getProducts from '../strapi/getProducts'
 
-let products = writable<Product[]>(flattenProducts(localProducts))
+let products = writable<Product[]>([], () => {
+  setProducts()
+  return () => {}
+})
 
-function flattenProducts(products: any[]): Product[] {
-  return products.map((item) => {
-    const image = item.image.url
-
-    return { ...item, image }
-  })
+async function setProducts() {
+  const data = await getProducts()
+  products.set(data)
 }
 
 export const featuredProducts = derived(products, ($products) =>
