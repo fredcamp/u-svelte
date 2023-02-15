@@ -18,7 +18,9 @@
   let emailDOM: HTMLInputElement
   let usernameDOM: HTMLInputElement
 
-  $: isEmpty = isMember ? !email || !password : !email || !password || !username
+  $: isEmpty = isMember
+    ? !email || !password || $alert.show
+    : !email || !password || !username || $alert.show
 
   onMount(() => {
     emailDOM.focus()
@@ -53,10 +55,13 @@
 
     if (user.jwt) {
       $userStore = { jwt: user.jwt, username: user.user.username }
-      navigate('/products')
-      alert.toggleItem('show', true)
-      alert.toggleItem('text', `Welcome back, ${$userStore.username}!`)
+      alert.toggleItem('text', `Welcome, ${$userStore.username}!`)
       alert.toggleItem('type', 'success')
+      alert.toggleItem('show', true)
+
+      navigate('/products', {
+        replace: true,
+      })
     } else {
       alert.toggleItem('show', true)
       alert.toggleItem('text', user.error.message)
@@ -78,7 +83,7 @@
   >
     <form class="grid gap-4" on:submit|preventDefault={onSubmit}>
       {#if !isMember}
-        <label transition:slide={{ duration: 400 }} class="space-y-1">
+        <label transition:slide|local={{ duration: 400 }} class="space-y-1">
           <p class="text-sm tracking-wider">
             <i class="fas fa-user mr-1" /> Username :
           </p>
