@@ -16,7 +16,8 @@ export default async function (
     })
 
     if (!response.ok) {
-      throw new Error(response.statusText)
+      const error = await response.json()
+      return error
     }
 
     const data = await response.json()
