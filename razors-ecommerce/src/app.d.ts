@@ -3,3 +3,5 @@ declare namespace svelte.JSX {
     onoutclick?: (e: Event<any>) => void
   }
 }
+
+declare var Stripe: stripe.StripeStatic;
