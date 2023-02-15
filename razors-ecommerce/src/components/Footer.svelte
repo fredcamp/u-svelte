@@ -2,6 +2,7 @@
   import tailwind from '../assets/tailwind.svg'
   import svelte from '../assets/svelte.svg'
   import typescript from '../assets/typescript.svg'
+  import strapi from '../assets/strapi.svg'
 </script>
 
 <footer class="bg-primary-light mt-28 text-sm text-slate-900">
@@ -17,6 +18,11 @@
     <div class="flex space-x-2">
       <p>Built with:</p>
       <div class="inline-flex items-center space-x-2">
+        <img
+          class="w-4 grayscale hover:grayscale-0"
+          src={strapi}
+          alt="strapi"
+        />
         <img
           class="w-4 grayscale hover:grayscale-0"
           src={svelte}
