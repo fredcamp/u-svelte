@@ -1,5 +1,5 @@
 import url from './url'
-import type { Order } from '../types/order.type'
+import type { Order, OrderStrapi } from '../types/order.type'
 
 async function createOrder({
   name,
@@ -8,7 +8,7 @@ async function createOrder({
   items,
   stripeToken,
   userToken,
-}: Order): Promise<void> {
+}: Order): Promise<OrderStrapi> {
   try {
     const response = await fetch(`${url}/api/orders`, {
       method: 'POST',
@@ -21,16 +21,18 @@ async function createOrder({
       },
     })
 
-    console.log(response)
-
     if (!response.ok) {
-      const error = await response.json()
-      console.log(error)
+      const data = await response.json()
+      return {
+        status: data.error.status,
+        message: data.error.message,
+      }
     }
 
-    // const data = await response.json()
-    // // return data
-    // console.log(data)
+    return {
+      status: response.status,
+      message: 'Order Checkout was successfully processed.',
+    }
   } catch (error) {
     console.log(error)
   }
