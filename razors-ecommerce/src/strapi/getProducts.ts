@@ -14,7 +14,7 @@ function parseProducts(data: any[]): Product[] {
       price,
       description,
       featured,
-      image: url + image.data.attributes.url,
+      image: image.data.attributes.url,
     }
   })
 
