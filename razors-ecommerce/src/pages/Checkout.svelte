@@ -5,12 +5,15 @@
   import Button from '../components/Button.svelte'
   import { totalPrice, cartItems } from '../stores/cart'
   import user from '../stores/user'
-  import { amountParser } from '../utils/parser'
+  import { amountParser, priceParser } from '../utils/parser'
   import { STRIPE_KEY } from '../env'
   import createOrder from '../strapi/createOrder'
+  import alert from '../stores/alert'
 
   let fullname: string
   let address: string
+  let loading = false
+  let fullnameDOM: HTMLInputElement
 
   // stripe vars
   let stripeElements: HTMLElement
@@ -28,10 +31,15 @@
       })
       return
     }
+
+    if ($totalPrice > 0) {
+      fullnameDOM.focus()
+    }
   })
 
-  async function onSubmit(): Promise<void> | never {
+  async function onSubmit(): Promise<void> {
     try {
+      loading = true
       const response = await stripe.createToken(card)
       if (response.error) {
         throw new Error(response.error.message)
@@ -40,14 +48,34 @@
       const { token } = response
       if (token) {
         const { id: stripeToken } = token
-        await createOrder({
+        const data = await createOrder({
           name: fullname,
           address,
-          total: $totalPrice,
+          total: priceParser($totalPrice),
           items: $cartItems,
           stripeToken,
           userToken: $user.jwt,
         })
+
+        let type: 'success' | 'danger'
+
+        if (data.status === 200) {
+          type = 'success'
+          alert.toggleItem('text', data.message)
+          alert.toggleItem('type', type)
+          alert.toggleItem('show', true)
+
+          $cartItems = []
+          navigate('/', {
+            replace: true,
+          })
+        } else {
+          type = 'danger'
+          alert.toggleItem('text', data.message)
+          alert.toggleItem('type', type)
+          alert.toggleItem('show', true)
+        }
+        loading = false
       }
     } catch (error) {
       console.log(error)
@@ -99,6 +127,7 @@
               type="text"
               class="focus:ring-primary-dark w-full rounded-lg px-2 py-1 text-sm shadow-sm focus:outline-none focus:ring-2"
               bind:value={fullname}
+              bind:this={fullnameDOM}
             />
           </label>
           <label class="space-y-1">
@@ -150,7 +179,7 @@
           <Button
             type="submit"
             class="bg-primary-dark disabled:bg-primary mt-2 rounded-full p-2 text-sm tracking-widest text-white shadow-md transition-colors ease-linear hover:bg-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-1 disabled:cursor-not-allowed"
-            disabled={isEmpty}>Submit</Button
+            disabled={isEmpty || loading}>Submit</Button
           >
         </div>
       </form>
