@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fly } from 'svelte/transition'
-  import { elasticOut, elasticIn } from 'svelte/easing'
+  import { elasticOut } from 'svelte/easing'
   import { flip } from 'svelte/animate'
   import { link } from 'svelte-routing'
   import Button from '../Button.svelte'
@@ -9,8 +9,10 @@
   import user from '../../stores/user'
   import { amountParser } from '../../utils/parser'
   import clickoutside from '../../utils/clickoutside'
+  import backToTop from '../../utils/backToTop'
 
   function onClick(): void {
+    backToTop()
     $show = false
   }
 </script>
