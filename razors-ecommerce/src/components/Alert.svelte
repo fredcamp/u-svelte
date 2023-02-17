@@ -59,17 +59,17 @@
     <div
       class="relative max-w-xs overflow-hidden rounded-lg p-8 pb-6 shadow-md {$alert.type ===
       'success'
-        ? 'bg-[#fcaa81]'
-        : 'bg-[#ff6a6a]'}"
+        ? 'bg-[#c5ff95]'
+        : 'bg-primary-dark'}"
     >
       <span
-        class="absolute top-0 left-0 right-0 h-[5px] w-0 bg-slate-900"
+        class="absolute top-0 left-0 right-0 h-[5px] w-0 bg-black/50"
         style="width:{100 - progress}%"
       />
-      <p class="text-sm tracking-wider">{$alert.text}</p>
+      <p class="text-center text-sm tracking-wider">{$alert.text}</p>
       <Button
         class="absolute top-2 right-2 px-1 {$alert.type === 'success'
-          ? 'hover:text-[#ff6a6a]'
+          ? 'hover:text-white'
           : 'hover:text-[#fcaa81]'}"
         on:click={onClick}
       >
