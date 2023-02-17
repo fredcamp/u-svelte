@@ -10,7 +10,6 @@ export interface Order {
 }
 
 export interface OrderStrapi {
-  error: {
-    message: string
-  }
+  status: number
+  message: string
 }
