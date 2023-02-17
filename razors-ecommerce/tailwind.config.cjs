@@ -21,6 +21,10 @@ module.exports = {
       },
       backgroundImage: {
         'hero-background': 'url("/images/hero.jpg")',
+        'about-background': 'url("/images/about.png")',
+      },
+      backgroundSize: {
+        'about-custom': '50% 100%',
       },
     },
   },
