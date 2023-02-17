@@ -62,7 +62,7 @@
       /> Back to Products</a
     >
 
-    <section class="mt-16" in:fade>
+    <section class="mt-16" in:fade|local>
       <div class="grid gap-4 md:grid-cols-2">
         <img
           src={$product.image}
