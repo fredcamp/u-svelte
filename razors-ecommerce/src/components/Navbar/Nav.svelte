@@ -20,8 +20,8 @@
   }
 
   function onClick(): void {
-    $show = false
     backToTop()
+    $show = false
   }
 </script>
 
