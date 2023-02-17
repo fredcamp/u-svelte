@@ -7,4 +7,12 @@ function amountParser(amount: number): string {
   return formatter.format(amount)
 }
 
-export { amountParser }
+function priceParser(amount: number): number {
+  const formatter = Intl.NumberFormat('us-en', {
+    minimumFractionDigits: 2,
+  })
+
+  return Number(formatter.format(amount))
+}
+
+export { amountParser, priceParser }
