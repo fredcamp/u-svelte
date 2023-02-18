@@ -14,6 +14,7 @@
   let username: string = ''
   let password: string = ''
   let isMember: boolean = true
+  let loading = false
 
   let emailDOM: HTMLInputElement
   let usernameDOM: HTMLInputElement
@@ -45,6 +46,7 @@
   async function onSubmit() {
     if (isEmpty) return
 
+    loading = true
     let user: UserStrapi
 
     if (isMember) {
@@ -67,6 +69,7 @@
       alert.toggleItem('text', user.error.message)
       alert.toggleItem('type', 'danger')
     }
+    loading = false
   }
 </script>
 
@@ -74,7 +77,11 @@
   <title>Razors | {isMember ? 'Login' : 'Register'}</title>
 </svelte:head>
 
-<Main class="mt-28 w-full px-6 text-slate-800 lg:mx-auto lg:max-w-screen-lg">
+<Main
+  class="mt-28 w-full px-6 text-slate-800 lg:mx-auto lg:max-w-screen-lg {loading
+    ? '!cursor-wait'
+    : 'cursor-default'}"
+>
   <h1 class="text-center text-2xl font-semibold">
     {isMember ? 'Login' : 'Register'}
   </h1>
@@ -126,9 +133,12 @@
       {/if}
       <Button
         type="submit"
-        class="bg-primary-dark disabled:bg-primary mt-2 rounded-full p-2 text-sm tracking-widest text-white shadow-md transition-colors ease-linear hover:bg-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-1 disabled:cursor-not-allowed"
-        disabled={isEmpty}>Submit</Button
+        class="bg-primary-dark disabled:bg-primary mt-2 rounded-full p-2 text-sm tracking-widest text-white shadow-md transition-colors ease-linear hover:bg-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-1 disabled:cursor-not-allowed
+        {loading ? '!cursor-wait' : 'cursor-pointer'}"
+        disabled={isEmpty || loading}
       >
+        {loading ? 'Please wait...' : 'Submit'}
+      </Button>
     </form>
     <div class="mt-5 text-xs text-slate-600">
       <div
