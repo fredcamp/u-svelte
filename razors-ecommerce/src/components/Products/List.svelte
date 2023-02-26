@@ -15,7 +15,12 @@
         <Card {...product} />
       </li>
     {:else}
-      <Loading height={380} />
+      <li class="col-[1/-1]">
+        <p class="text-center text-slate-500">
+          Fetching products from back-end. This might take a while
+        </p>
+        <Loading height={380} />
+      </li>
     {/each}
   </ul>
 </section>
